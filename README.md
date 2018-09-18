@@ -7,21 +7,11 @@ npm i rola --save
 ```
 
 # Usage
-```javascript
-import rola from 'rola'
-
-// setup
-const animations = rola()
-
-// init listeners, check position
-animations()
-```
-To re-check position, call it again:
-```javascript
-animations()
+Define animations in your markup:
+```html
+<h1 data-animate='slide-up fast ease delay'>Rolaaaaa</h1>
 ```
 
-## CSS
 Use CSS attribute selectors to define transitions:
 ```css
 [data-animate] {
@@ -51,6 +41,21 @@ Use CSS attribute selectors to define transitions:
     transform: translateY(0);
   }
 }
+```
+
+Set up JavaScript:
+```javascript
+import rola from 'rola'
+
+// setup
+const animations = rola()
+
+// init listeners, check position
+animations()
+```
+To re-check position, call it again:
+```javascript
+animations()
 ```
 
 ## API
