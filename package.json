@@ -1,0 +1,31 @@
+{
+  "name": "rola",
+  "version": "0.0.1",
+  "description": "",
+  "source": "index.js",
+  "module": "dist/rola.es.js",
+  "jsnext:main": "dist/rola.es.js",
+  "main": "dist/rola.js",
+  "umd:main": "dist/rola.umd.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "microbundle build",
+    "watch": "microbundle watch --compress false",
+    "publish": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/estrattonbailey/rola.git"
+  },
+  "author": "estrattonbailey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estrattonbailey/rola/issues"
+  },
+  "homepage": "https://github.com/estrattonbailey/rola#readme",
+  "devDependencies": {
+    "microbundle": "^0.4.4"
+  }
+}
