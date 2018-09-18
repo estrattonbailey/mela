@@ -50,13 +50,16 @@ import rola from 'rola'
 // setup
 const animations = rola()
 
-// init listeners, check position
+// bind listeners, check position
 animations()
 ```
-To re-check position, call it again:
+To bind new elements or re-check positions, call it again:
 ```javascript
 animations()
 ```
+*Call this every time the DOM changes*, like page transitions and other
+mutations. Any nodes no longer in the DOM will be removed from the listener
+cache.
 
 ## API
 ### `rola(attribute, options)`
