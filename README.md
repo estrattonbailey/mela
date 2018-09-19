@@ -1,5 +1,5 @@
 # rola
-Tiny scroll animation utility. **500 bytes gzipped.**
+Tiny scroll animation utility. **440 bytes gzipped.**
 
 ## Install
 ```
