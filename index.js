@@ -9,7 +9,6 @@ function inViewport (node, threshold = 0, y) {
   const nodeTop = bounds.top + y
   const nodeBot = nodeTop + bounds.height
   const offset = threshold * vh
-  console.log({ nodeTop, nodeBot, y })
   return (nodeBot >= y - offset) && (nodeTop <= (y + vh) + offset)
 }
 
