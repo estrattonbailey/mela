@@ -1,6 +1,6 @@
 {
   "name": "rola",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "Tiny scroll animation utility.",
   "source": "index.js",
   "module": "dist/rola.es.js",
