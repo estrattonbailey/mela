@@ -16,7 +16,7 @@ export default function rola (attr = 'data-animate', opts = {}) {
   return function init () {
     let stopped = false
 
-    (function loop () {
+    ;(function loop () {
       y = window.scrollY
       x = window.innerWidth
       vh = window.innerHeight
