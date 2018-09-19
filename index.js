@@ -16,6 +16,12 @@ export default function rola (attr = 'data-animate', opts = {}) {
   return function init () {
     let stopped = false
 
+    pop(cache, (n, i) => {
+      !document.documentElement.contains(n) && cache.splice(i, 1)
+    })
+
+    pop(document.querySelectorAll('[' + attr + ']'), n => cache.indexOf(n) < 0 && cache.push(n))
+
     ;(function loop () {
       y = window.scrollY
       x = window.innerWidth
@@ -41,12 +47,6 @@ export default function rola (attr = 'data-animate', opts = {}) {
 
       (!stopped && cache.length) && requestAnimationFrame(loop)
     })()
-
-    pop(cache, (n, i) => {
-      !document.documentElement.contains(n) && cache.splice(i, 1)
-    })
-
-    pop(document.querySelectorAll('[' + attr + ']'), n => cache.indexOf(n) < 0 && cache.push(n))
 
     return function stop () {
       stopped = true
