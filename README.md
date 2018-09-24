@@ -66,7 +66,7 @@ cache.
 - `attribute` - string, default: `data-animate`
 - `options` - object, default: `{}`
   - `options.threshold` - A fraction of the viewport height. Positive values
-    makes image load sooner, negative values makes image load later.
+    increase scroll depth, negative values decrease it.
 
 ## License
 MIT License © [Eric Bailey](https://estrattonbailey.com)
