@@ -29,6 +29,7 @@
     "microbundle": "^0.4.4"
   },
   "dependencies": {
-    "srraf": "^3.0.2"
+    "srraf": "^3.0.2",
+    "vsbl": "^1.0.1"
   }
 }

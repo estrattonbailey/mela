@@ -1,38 +1,31 @@
-import srraf from 'srraf'
-
-function pop (arr, cb) {
-  for (let i = arr.length - 1; i > -1; i--) {
-    cb(arr[i], i)
-  }
-}
+import vsbl from 'vsbl'
 
 export default function rola (attr = 'data-animate', opts = {}) {
-  let cache = []
+  let cache = new Map()
 
   return function init () {
-    pop(cache, (n, i) => {
-      !document.documentElement.contains(n) && cache.splice(i, 1)
+    cache.forEach((listener, node, map) => {
+      !document.documentElement.contains(node) && cache.delete(node)
     })
 
-    pop(document.querySelectorAll('[' + attr + ']'), n => cache.indexOf(n) < 0 && cache.push(n))
+    const nodes = document.querySelectorAll('[' + attr + ']')
 
-    const listener = srraf(({ y, vh }) => {
-      pop(cache, (n, i) => {
-        const bounds = n.getBoundingClientRect()
-        const nodeTop = bounds.top + y
-        const nodeBot = nodeTop + bounds.height
-        const offset = (opts.threshold || 0) * vh
+    for (let i = nodes.length - 1; i > -1; i--) {
+      if (cache.has(nodes[i])) continue
 
-        if ((nodeBot >= y - offset) && (nodeTop <= (y + vh) + offset)) {
-          n.classList.add('is-visible')
-          cache.splice(i, 1)
-        }
-      })
-    })
+      cache.set(
+        nodes[i],
+        vsbl(nodes[i], { threshold: opts.threshold || 0 })(() => {
+          nodes[i].classList.add('is-visible')
+          !opts.reset && cache.delete(nodes[i])
+        }, () => {
+          opts.reset && nodes[i].classList.remove('is-visible')
+        })
+      )
+    }
 
     return function stop () {
-      listener()
-      cache = []
+      cache.clear()
     }
   }
 }
