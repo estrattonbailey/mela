@@ -65,8 +65,8 @@ cache.
 ### `rola(attribute, options)`
 - `attribute` - string, default: `data-animate`
 - `options` - object, default: `{}`
-  - `options.threshold` - A fraction of the viewport height. Positive values
-    increase scroll depth, negative values decrease it.
+  - `options.threshold` - A fraction of the element height.
+  - `options.reset` - Repeat transition every time element enters viewport.
 
 ## License
 MIT License © [Eric Bailey](https://estrattonbailey.com)
