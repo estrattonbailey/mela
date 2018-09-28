@@ -65,7 +65,7 @@ cache.
 ### `rola(attribute, options)`
 - `attribute` - string, default: `data-animate`
 - `options` - object, default: `{}`
-  - `options.threshold` - A fraction of the element height.
+  - `options.threshold` - A fraction of the element height, see [vsbl](https://github.com/estrattonbailey/vsbl) docs for more options.
   - `options.reset` - Repeat transition every time element enters viewport.
 
 ## License
