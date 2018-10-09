@@ -1,5 +1,5 @@
 # rola
-Tiny scroll animation utility. **440 bytes gzipped.**
+Tiny scroll animation utility. **700 bytes gzipped.**
 
 ## Install
 ```
@@ -65,7 +65,8 @@ cache.
 ### `rola(attribute, options)`
 - `attribute` - string, default: `data-animate`
 - `options` - object, default: `{}`
-  - `options.threshold` - A fraction of the element height, see [vsbl](https://github.com/estrattonbailey/vsbl) docs for more options.
+  - `options.threshold` - Trigger animations sooner or later, see
+    [vsbl](https://github.com/estrattonbailey/vsbl) docs for more options.
   - `options.reset` - Repeat transition every time element enters viewport.
 
 ## License
