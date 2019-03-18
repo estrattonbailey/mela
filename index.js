@@ -1,6 +1,6 @@
 import vsbl from 'vsbl'
 
-export default function rola (attr = 'data-animate', opts = {}) {
+export default function mela (attr = 'data-animate', opts = {}) {
   let cache = new Map()
 
   return function init () {
@@ -13,18 +13,23 @@ export default function rola (attr = 'data-animate', opts = {}) {
     for (let i = nodes.length - 1; i > -1; i--) {
       if (cache.has(nodes[i])) continue
 
+      const scroller = vsbl(nodes[i], { threshold: opts.threshold || 0 })(() => {
+        nodes[i].classList.add('is-visible')
+        !opts.reset && cache.delete(nodes[i])
+      }, () => {
+        opts.reset && nodes[i].classList.remove('is-visible')
+      })
+
+      scroller.update()
+
       cache.set(
         nodes[i],
-        vsbl(nodes[i], { threshold: opts.threshold || 0 })(() => {
-          nodes[i].classList.add('is-visible')
-          !opts.reset && cache.delete(nodes[i])
-        }, () => {
-          opts.reset && nodes[i].classList.remove('is-visible')
-        })
+        scroller
       )
     }
 
     return function stop () {
+      cache.forEach(scroller => scroller.destroy())
       cache.clear()
     }
   }

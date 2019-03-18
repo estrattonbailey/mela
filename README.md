@@ -1,9 +1,9 @@
-# rola
-Tiny scroll animation utility. **700 bytes gzipped.**
+# mela
+Tiny utility to trigger animations on scroll. **700 bytes gzipped.**
 
 ## Install
 ```
-npm i rola --save
+npm i mela --save
 ```
 
 # Usage
@@ -45,10 +45,10 @@ Use CSS attribute selectors to define transitions:
 
 Set up JavaScript:
 ```javascript
-import rola from 'rola'
+import mela from 'mela'
 
 // setup
-const animations = rola()
+const animations = mela()
 
 // bind listeners, check position
 animations()
@@ -62,7 +62,7 @@ mutations. Any nodes no longer in the DOM will be removed from the listener
 cache.
 
 ## API
-### `rola(attribute, options)`
+### `mela(attribute, options)`
 - `attribute` - string, default: `data-animate`
 - `options` - object, default: `{}`
   - `options.threshold` - Trigger animations sooner or later, see
