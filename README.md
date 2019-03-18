@@ -1,6 +1,8 @@
 # mela
 Tiny utility to trigger animations on scroll. **700 bytes gzipped.**
 
+> 👀 please note, this library was previously called `rola`. Previous versions have been deprecated in favor of `mela`.
+
 ## Install
 ```
 npm i mela --save
