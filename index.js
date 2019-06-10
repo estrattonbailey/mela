@@ -13,11 +13,13 @@ export default function mela (attr = 'data-animate', opts = {}) {
     for (let i = nodes.length - 1; i > -1; i--) {
       if (cache.has(nodes[i])) continue
 
+      const reset = opts.reset || /reset/.test(nodes[i].getAttribute('data-animate'))
+
       const scroller = vsbl(nodes[i], { threshold: opts.threshold || 0 })(() => {
         nodes[i].classList.add('is-visible')
-        !opts.reset && cache.delete(nodes[i])
+        !reset && cache.delete(nodes[i])
       }, () => {
-        opts.reset && nodes[i].classList.remove('is-visible')
+        reset && nodes[i].classList.remove('is-visible')
       })
 
       scroller.update()
