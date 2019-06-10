@@ -1,20 +1,24 @@
 # mela
-Tiny utility to trigger animations on scroll. **700 bytes gzipped.**
-
-> 👀 please note, this library was previously called `rola`. Previous versions have been deprecated in favor of `mela`.
+Tiny utility to trigger animations on scroll. **800 bytes gzipped.**
 
 ## Install
 ```
 npm i mela --save
 ```
 
-# Usage
-Define animations in your markup:
+## Usage
+`mela` works by applying an `is-visible` class to an element when it enters the
+viewport.
+
+### Config
+It's configured using an attribute in your markup. For each element you wish to
+animate, define `data-animate` and pass it the values you would like to use:
 ```html
-<h1 data-animate='slide-up fast ease delay'>Rolaaaaa</h1>
+<h1 data-animate='slide-up fast ease delay'>I will slide in!</h1>
 ```
 
-Use CSS attribute selectors to define transitions:
+### Styles
+Use CSS attribute selectors to define those transition values:
 ```css
 [data-animate] {
   transition-duration: 200ms;
@@ -45,31 +49,53 @@ Use CSS attribute selectors to define transitions:
 }
 ```
 
-Set up JavaScript:
+### JavaScript
+Create an instance:
 ```javascript
 import mela from 'mela'
 
-// setup
 const animations = mela()
-
-// bind listeners, check position
-animations()
 ```
-To bind new elements or re-check positions, call it again:
+
+Then call that instance to bind elements and check position:
 ```javascript
 animations()
 ```
-*Call this every time the DOM changes*, like page transitions and other
-mutations. Any nodes no longer in the DOM will be removed from the listener
-cache.
 
-## API
-### `mela(attribute, options)`
-- `attribute` - string, default: `data-animate`
-- `options` - object, default: `{}`
-  - `options.threshold` - Trigger animations sooner or later, see
-    [vsbl](https://github.com/estrattonbailey/vsbl) docs for more options.
-  - `options.reset` - Repeat transition every time element enters viewport.
+When the DOM changes, like after a page load, you'll need to rebind. Simply call
+the instance again:
+```javascript
+animations()
+```
+
+### Options
+By default `mela` only animates in once. To repeat the animation each time the
+element enters the viewport, pass `reset` to your `data-animate` attribute:
+```html
+<h1 data-animate='slide-up fast ease delay reset'>I will slide in every time!</h1>
+```
+
+`mela` users [vsbl](https://github.com/estrattonbailey/vsbl) internally, so to
+adjust how soon/late the animation occurs, use `data-threshold`:
+```html
+<h1 data-animate='slide-up fast ease delay reset' data-threshold='0.25'>I will slide in every time!</h1>
+```
+
+If you want to apply a `threshold` value to all animations, or ensure all
+animations reset, you can pass these options to the constructor:
+```javascript
+const animations = mela({
+  threshold: 0.25,
+  reset: true
+})
+```
+
+Finally, if you'd rather use something other than data-animate:
+```javascript
+const animations = mela({
+  attribute: 'data-anim'
+})
+```
 
 ## License
 MIT License © [Eric Bailey](https://estrattonbailey.com)

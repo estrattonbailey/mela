@@ -1,6 +1,10 @@
 import vsbl from 'vsbl'
 
-export default function mela (attr = 'data-animate', opts = {}) {
+export default function mela ({
+  attribute = 'data-animate',
+  reset = false,
+  threshold = 0
+}) {
   let cache = new Map()
 
   return function init () {
@@ -8,18 +12,18 @@ export default function mela (attr = 'data-animate', opts = {}) {
       !document.documentElement.contains(node) && cache.delete(node)
     })
 
-    const nodes = document.querySelectorAll('[' + attr + ']')
+    const nodes = document.querySelectorAll('[' + attribute + ']')
 
     for (let i = nodes.length - 1; i > -1; i--) {
       if (cache.has(nodes[i])) continue
 
-      const reset = opts.reset || /reset/.test(nodes[i].getAttribute('data-animate'))
+      const res = reset || /reset/.test(nodes[i].getAttribute('data-animate'))
 
-      const scroller = vsbl(nodes[i], { threshold: opts.threshold || 0 })(() => {
+      const scroller = vsbl(nodes[i], { threshold: threshold || 0 })(() => {
         nodes[i].classList.add('is-visible')
-        !reset && cache.delete(nodes[i])
+        !res && cache.delete(nodes[i])
       }, () => {
-        reset && nodes[i].classList.remove('is-visible')
+        res && nodes[i].classList.remove('is-visible')
       })
 
       scroller.update()
