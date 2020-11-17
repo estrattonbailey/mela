@@ -68,6 +68,16 @@ the instance again:
 animations()
 ```
 
+If needed, you can also bind only named elements like this:
+
+```html
+<h1 data-animate='hero slide-up fast ease delay reset'>I will slide in!</h1>
+```
+
+```javascript
+animations({ name: 'hero' })
+```
+
 ### Options
 By default `mela` only animates in once. To repeat the animation each time the
 element enters the viewport, pass `reset` to your `data-animate` attribute:

@@ -7,7 +7,7 @@ export default function mela ({
 }) {
   let cache = new Map()
 
-  return function init () {
+  return function init ({ name } = {}) {
     cache.forEach((listener, node, map) => {
       !document.documentElement.contains(node) && cache.delete(node)
     })
@@ -17,11 +17,17 @@ export default function mela ({
     for (let i = nodes.length - 1; i > -1; i--) {
       if (cache.has(nodes[i])) continue
 
-      const res = reset || /reset/.test(nodes[i].getAttribute('data-animate'))
+      const attr = nodes[i].getAttribute(attribute)
+      const res = reset || /reset/.test(attr)
+
+      if (name !== undefined && !attr.includes(name)) continue
 
       const scroller = vsbl(nodes[i], { threshold: threshold || 0 })(() => {
         nodes[i].classList.add('is-visible')
-        !res && cache.delete(nodes[i])
+        if (!res) {
+          scroller.destroy()
+          cache.delete(nodes[i])
+        }
       }, () => {
         res && nodes[i].classList.remove('is-visible')
       })
