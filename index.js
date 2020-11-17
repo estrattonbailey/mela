@@ -4,12 +4,15 @@ export default function mela ({
   attribute = 'data-animate',
   reset = false,
   threshold = 0
-}) {
+} = {}) {
   let cache = new Map()
 
   return function init ({ name } = {}) {
-    cache.forEach((listener, node, map) => {
-      !document.documentElement.contains(node) && cache.delete(node)
+    cache.forEach((scroller, node) => {
+      if (!document.documentElement.contains(node)) {
+        cache.delete(node)
+        scroller.destroy()
+      }
     })
 
     const nodes = document.querySelectorAll('[' + attribute + ']')
@@ -19,6 +22,8 @@ export default function mela ({
 
       const attr = nodes[i].getAttribute(attribute)
       const res = reset || /reset/.test(attr)
+
+      console.log(attr, res)
 
       if (name !== undefined && !attr.includes(name)) continue
 
