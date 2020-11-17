@@ -23,8 +23,6 @@ export default function mela ({
       const attr = nodes[i].getAttribute(attribute)
       const res = reset || /reset/.test(attr)
 
-      console.log(attr, res)
-
       if (name !== undefined && !attr.includes(name)) continue
 
       const scroller = vsbl(nodes[i], { threshold: threshold || 0 })(() => {
