@@ -1,6 +1,6 @@
 {
   "name": "mela",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Tiny utility to trigger animations on scroll.",
   "source": "index.js",
   "main": "dist/mela.js",
