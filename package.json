@@ -13,8 +13,7 @@
   ],
   "scripts": {
     "build": "microbundle build --external none",
-    "watch": "microbundle watch --compress false",
-    "publish": "npm publish"
+    "watch": "microbundle watch --compress false"
   },
   "repository": {
     "type": "git",
